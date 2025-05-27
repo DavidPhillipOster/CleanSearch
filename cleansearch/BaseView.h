@@ -8,8 +8,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+// Serves as the controller for this app.
 @interface BaseView : NSView
-
+@property (nonatomic) IBOutlet NSTextField *searchField;
 @end
 
 NS_ASSUME_NONNULL_END

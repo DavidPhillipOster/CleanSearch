@@ -3,7 +3,8 @@
 //  Created by david on 1/29/25.
 // License: Apache Version 2.
 
-#import <Cocoa/Cocoa.h>
+#import "AppDelegate.h"
+#import "RecentSearches.h"
 
 /// The set of characters that can be in a query parameter without messing up the parsing of the entire URL.
 NSCharacterSet *Allowed(void){
@@ -27,6 +28,10 @@ NSString *SearchURLString(NSString *s){
   return [NSString stringWithFormat:@"https://www.google.com/search?client=safari&rls=en&q=%@&ie=UTF-8&oe=UTF-8&udm=14", s];
 }
 
+NSString *SanitizedSearchURLString(NSString *s) {
+  return SearchURLString(Sanitize(s));
+}
+
 /// given an entire URL string, make an NSURL
 NSURL *URL(NSString *s) {
   return [NSURL URLWithString:s];
@@ -34,7 +39,7 @@ NSURL *URL(NSString *s) {
 
 /// Given a string from the user, search for it in the default browser.
 void DoSearch(NSString *s){
-  BOOL wasOK = [[NSWorkspace sharedWorkspace] openURL:URL(SearchURLString(Sanitize(s)))];
+  BOOL wasOK = [[NSWorkspace sharedWorkspace] openURL:URL(SanitizedSearchURLString(s))];
   if (!wasOK) {
     NSString *reason = [NSString stringWithFormat:@"Could not search for ‘%@’", s];
     [NSApp presentError:[NSError errorWithDomain:@"app" code:1 userInfo:@{
@@ -43,7 +48,7 @@ void DoSearch(NSString *s){
   }
 }
 
-@interface AppDelegate : NSObject <NSApplicationDelegate>
+@interface AppDelegate ()
 @property IBOutlet NSWindow *window;
 @property IBOutlet NSTextField *searchField;
 @end
@@ -54,6 +59,7 @@ void DoSearch(NSString *s){
 - (IBAction)doSearch:(id)sender {
   NSString *s = self.searchField.stringValue;
   if ([s length]) {
+    [RecentSearches.sharedInstance addSearch:s];
     DoSearch(s);
   }
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="23504" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="23727" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="23504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="23727"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -183,7 +183,7 @@
             <rect key="contentRect" x="335" y="390" width="478" height="54"/>
             <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1415"/>
             <view key="contentView" misplaced="YES" id="EiT-Mj-1SZ" customClass="BaseView">
-                <rect key="frame" x="0.0" y="-8" width="478" height="62"/>
+                <rect key="frame" x="0.0" y="0.0" width="478" height="54"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <searchField wantsLayer="YES" focusRingType="none" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0G0-d8-XAf">
@@ -217,6 +217,9 @@
                     <constraint firstAttribute="bottom" secondItem="0G0-d8-XAf" secondAttribute="bottom" constant="19" id="m04-jQ-8YE"/>
                     <constraint firstItem="zjC-c2-aHh" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="14" id="mSw-le-C3j"/>
                 </constraints>
+                <connections>
+                    <outlet property="searchField" destination="0G0-d8-XAf" id="iCG-1I-Z5m"/>
+                </connections>
             </view>
             <connections>
                 <outlet property="delegate" destination="Voe-Tx-rLC" id="top-28-M4D"/>
